@@ -275,6 +275,9 @@ if [ "$BUILDMW" = "1" ]; then
             buildmw -u "https://github.com/mer-hybris/geoclue-providers-hybris" \
                     -s rpm/geoclue-providers-hybris.spec || die
         fi
+        if [ $android_version_major -ge 9 ]; then
+                buildmw -u "https://github.com/mer-hybris/dummy_netd.git" || die
+        fi
         # build kf5bluezqt-bluez4 if not yet provided by Sailfish OS itself
         sb2 -t $VENDOR-$DEVICE-$PORT_ARCH -m sdk-install -R zypper se kf5bluezqt-bluez4 > /dev/null
         ret=$?
